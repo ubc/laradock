@@ -1,0 +1,13 @@
+{
+    "http://localhost": {
+        "client_id": "StrawberryCat",
+        "auth_login_url": "http://localhost/lti/launch/platform/auth",
+        "auth_token_url": "http://localhost/lti/launch/platform/auth",
+        "key_set_url": "http://nginx/lti/platform/jwks",
+        "private_key_file": "/private.key",
+        "deployment": [
+            "prototype1",
+			"1"
+        ]
+    }
+}
