@@ -26,9 +26,14 @@ class Example_Database implements LTI\Database {
     }
 
     public function find_deployment($iss, $deployment_id) {
+        // disable deployment_id checking, we can't predict what deployment_id
+        // Canvas will generate for us, so it makes no sense to limit to only
+        // deployments we know
+        /*
         if (!in_array($deployment_id, $_SESSION['iss'][$iss]['deployment'])) {
             return false;
         }
+         */
         return LTI\LTI_Deployment::new()
             ->set_deployment_id($deployment_id);
     }
