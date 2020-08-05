@@ -1,0 +1,17 @@
+version: '3'
+
+# MAINTENANCE NOTE
+# node-fibers, a dependency put in by `vue create`, only works with node 8 or 10
+# node 8 EOL is 2019-12-31, so we're not using it
+# node 10 EOL is 2021-04-01, gives us a bit more room
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+  db:
+    image: "mongo:4"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example

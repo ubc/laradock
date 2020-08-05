@@ -1707,12 +1707,29 @@ services:
         - ${DATA_PATH_HOST}/tomcat/logs:/usr/local/tomcat/logs
       # restart: always
 
-### PHP LTI 1.3 Example Tool ##################################
-    lti-example-tool:
+### Ltijs Demo Server, LTI tool for testing ##################################
+    ltijs-demo-server:
       build:
-        context: ./lti-example-tool
+        context: ./ltijs-demo-server
       ports:
-        - 9001:80
+        - 4000:4000
       networks:
         - frontend
         - backend
+      depends_on:
+        - ltijs-demo-server-db
+      environment:
+        PORT: 4000
+        DB_HOST: ltijs-demo-server-db
+        DB_NAME: ltijs
+        DB_USER: root
+        DB_PASS: zcW2398DSLkjsUPiod
+        LTI_KEY: notusedforlti13
+
+    ltijs-demo-server-db:
+      image: "mongo:4"
+      networks:
+        - backend
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: zcW2398DSLkjsUPiod
