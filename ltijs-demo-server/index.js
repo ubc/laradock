@@ -43,13 +43,13 @@ const setup = async () => {
    * Register platform
    */
   await lti.registerPlatform({
-    url: 'http://localhost',
-    name: 'LTI Shim',
-    clientId: 'CLIENTID',
-    authenticationEndpoint: 'http://192.168.55.182/lti/launch/platform/auth',
-    accesstokenEndpoint: 'http://192.168.55.182/lti/security/platform/token',
+    url: process.env.PLATFORM_URL,
+    name: process.env.PLATFORM_NAME,
+    clientId: process.env.PLATFORM_CLIENT_ID,
+    authenticationEndpoint: process.env.PLATFORM_AUTH_ENDPOINT,
+    accesstokenEndpoint: process.env.PLATFORM_ACCESS_TOKEN_ENDPOINT,
     authConfig: { method: 'JWK_SET',
-      key: 'http://192.168.55.182/lti/platform/jwks' }
+      key: process.env.PLATFORM_JWKS_ENDPOINT }
   })
 }
 

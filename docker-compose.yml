@@ -1766,6 +1766,19 @@ services:
         DB_USER: root
         DB_PASS: zcW2398DSLkjsUPiod
         LTI_KEY: notusedforlti13
+        PLATFORM_URL: http://localhost
+        PLATFORM_NAME: LTI Shim
+        PLATFORM_CLIENT_ID: CLIENTID
+        # WARNING: This must be changed to your own IP. LTI launch is performed
+        # by the browser (outside of the docker network), so http://localhost/
+        # would work here for the launch. However, if you use localhost here,
+        # the advertised NRPS URL will also change to localhost. Since NRPS
+        # calls are performed inside of the docker network, localhost doesn't
+        # point to the shim, and the call fails. Using IP sidesteps the issue
+        # since IP works both in and out of the docker network.
+        PLATFORM_AUTH_ENDPOINT: http://192.168.55.182/lti/launch/platform/auth
+        PLATFORM_ACCESS_TOKEN_ENDPOINT: http://nginx/lti/security/platform/token
+        PLATFORM_JWKS_ENDPOINT: http://nginx/lti/platform/jwks
 
     ltijs-demo-server-db:
       image: "mongo:4"
